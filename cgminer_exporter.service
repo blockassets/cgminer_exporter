@@ -1,0 +1,13 @@
+[Unit]
+Description=cgminer_exporter
+After=init.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/cgminer_exporter
+Restart=always
+RestartSec=4s
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
