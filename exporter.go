@@ -2,13 +2,13 @@ package main
 
 import (
 	"log"
+	"reflect"
 	"sync"
 	"time"
 
 	"github.com/blockassets/cgminer_client"
-	"github.com/prometheus/client_golang/prometheus"
 	"github.com/blockassets/prometheus_helper"
-	"reflect"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 //
@@ -27,8 +27,8 @@ type Exporter struct {
 }
 
 type MinerData struct {
-	Summary cgminer_client.Summary
-	Devs map[string]cgminer_client.Dev
+	Summary   cgminer_client.Summary
+	Devs      map[string]cgminer_client.Dev
 	ChipStats map[string]cgminer_client.ChipStat
 }
 

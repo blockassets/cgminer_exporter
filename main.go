@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"time"
-	"io/ioutil"
 	"strings"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -50,7 +50,7 @@ func readFileTrim(file string) string {
 
 /*
 	BW saves their cgminer version into a file.
- */
+*/
 func ReadVersionFile() string {
 	return readFileTrim("/usr/app/version.txt")
 }
