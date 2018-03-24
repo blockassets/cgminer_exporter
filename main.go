@@ -12,6 +12,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/blockassets/cgminer_client"
 )
 
 var (
@@ -31,7 +32,10 @@ func main() {
 		cgVersion = "unknown"
 	}
 
-	prometheus.MustRegister(NewExporter(*cgHost, *cgPort, *cgTimeout, cgVersion))
+	client := cgminer_client.New(*cgHost, *cgPort, *cgTimeout)
+	exporter := NewExporter(client, cgVersion)
+
+	prometheus.MustRegister(exporter)
 
 	http.Handle("/metrics", promhttp.Handler())
 	log.Printf("%s %s", os.Args[0], version)

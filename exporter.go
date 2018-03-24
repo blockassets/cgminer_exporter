@@ -4,8 +4,6 @@ import (
 	"log"
 	"reflect"
 	"sync"
-	"time"
-
 	"github.com/blockassets/cgminer_client"
 	"github.com/blockassets/prometheus_helper"
 	"github.com/prometheus/client_golang/prometheus"
@@ -33,13 +31,13 @@ type MinerData struct {
 }
 
 //
-func NewExporter(host string, port int64, timeout time.Duration, version string) *Exporter {
+func NewExporter(client *cgminer_client.Client, version string) *Exporter {
 	constLabels := prometheus.Labels{"version": version}
 
 	structFieldMap := prometheus_helper.NewStructFieldMap(MinerData{})
 
 	return &Exporter{
-		client:      cgminer_client.New(host, port, timeout),
+		client:      client,
 		ConstLabels: constLabels,
 		Gauges:      prometheus_helper.NewGaugeMapMap(structFieldMap, namespace, constLabels),
 		GaugeVecs:   make(prometheus_helper.GaugeVecMapMap),
