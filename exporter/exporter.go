@@ -17,7 +17,7 @@ var (
 
 // Collector interface
 type Exporter struct {
-	client      *cgminer_client.Client
+	client      cgminer_client.Client
 	ConstLabels prometheus.Labels
 	Gauges      prometheus_helper.GaugeMapMap
 	GaugeVecs   prometheus_helper.GaugeVecMapMap
@@ -31,7 +31,7 @@ type MinerData struct {
 }
 
 //
-func NewExporter(client *cgminer_client.Client, version string) *Exporter {
+func NewExporter(client cgminer_client.Client, version string) *Exporter {
 	constLabels := prometheus.Labels{"version": version}
 
 	structFieldMap := prometheus_helper.NewStructFieldMap(MinerData{})
