@@ -13,6 +13,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/blockassets/cgminer_client"
+	"github.com/blockassets/cgminer_exporter/exporter"
 )
 
 var (
@@ -33,7 +34,7 @@ func main() {
 	}
 
 	client := cgminer_client.New(*cgHost, *cgPort, *cgTimeout)
-	exporter := NewExporter(client, cgVersion)
+	exporter := exporter.NewExporter(client, cgVersion)
 
 	prometheus.MustRegister(exporter)
 
