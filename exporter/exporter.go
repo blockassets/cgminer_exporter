@@ -96,11 +96,10 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		val := reflect.ValueOf(value)
 		// 'Devs' and 'ChipStats' is a special case as a GaugeVec
 		if val.Kind() == reflect.Map {
-			for _, key := range val.MapKeys() {
-				name := key.Interface().(string)
-				worker := val.MapIndex(key).Interface()
-				labelValues := prometheus.Labels{idLabelNames[0]: name}
-				prometheus_helper.CollectGaugeVecs(name, worker, e.GaugeVecs, namespace, e.ConstLabels, idLabelNames, labelValues)
+			for _, k := range val.MapKeys() {
+				worker := val.MapIndex(k).Interface()
+				labelValues := prometheus.Labels{idLabelNames[0]: k.Interface().(string)}
+				prometheus_helper.CollectGaugeVecs(key, worker, e.GaugeVecs, namespace, e.ConstLabels, idLabelNames, labelValues)
 			}
 		} else {
 			meta := prometheus_helper.StructMeta{}
