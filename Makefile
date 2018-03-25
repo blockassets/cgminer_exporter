@@ -13,7 +13,7 @@ dep:
 	@dep ensure
 
 test:
-	@go test .
+	@go test ./...
 
 clean:
 	@rm -f cgminer_exporter

@@ -9,15 +9,11 @@ before_install:
 install:
 - dep ensure
 stages:
-- test
 - name: deploy
-  if: branch = master
 jobs:
   include:
-  - stage: test
-    script: make test
   - stage: deploy
-    script: make arm
+    script: make test arm
     before_deploy:
     - git config --local user.name "lookfirst"
     - git config --local user.email "latchkey@gmail.com"
@@ -29,4 +25,5 @@ jobs:
       api_key:
         secure: Mr/9PSV+7G3lrdHTJogGDtFC1RqdwtnB3oHLxcGlsh26vRNQjNFSDNlmi0LgK59r8DJ8B36jiY5UBX59Bf0vIrA+eZaE/Prw1jnocIjKXTZJ+4gTmYTmDGE4neJMy7kkY6z8TwnVZURObiJJrCScUO2xhqTAZIn0lcssiB76x/FWvnzb1ctAAm/6PPoYF1p7sh5qnD1q+NZjgSNf/KNruaPnY25ddHbS2Rp52n0eTdBLEMwSD6EjljPaei10iL70LPr3wCY0nQPjJh9LUN9ZINYrWjPwixRWkABCSk/UgO2VboC+DqN4n486BDxZ1vXRwQm72Eaq/CB2OyAY1mvIVKol6pwEURReXZTsG0qHIYv+kf/ZnXh5137n/39F/if+Qhsg9cZ0CGiB8YjiN0wpe5iEaI21XcoITSlMmy491syM1CKRQDrbh/W7H8PT45QEBSSg4KAx91avJ4nbTUzEvOxsrDE5lr79CHlwUAxsyw4Fe1PbceC3BoenBS9p88hFx7DG6qiXtAHA2lI82x+4huD0LFcZxZtTw2DDDLy7eYinZa4oBfJOTleZC8SUNLq8ThMZFyRh5xmDqNdJDdQACsgnkW9n+Fa92HeslbilmvTVc8KWmVIVOufKw4yaO49AKiZ1g/pHIr5qBE0lypLNaRZUYP0xt7q9o8jOpmvoClE=
       on:
+        branch: master
         repo: blockassets/cgminer_exporter
