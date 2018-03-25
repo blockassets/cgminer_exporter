@@ -17,7 +17,7 @@
   branch = "master"
   name = "github.com/blockassets/prometheus_helper"
   packages = ["."]
-  revision = "abb70902360d2f3e40ade51b29c1d23f5f88082d"
+  revision = "88e9aac4ad60eb82f019ed07c09d0199eb79e530"
 
 [[projects]]
   name = "github.com/golang/protobuf"
