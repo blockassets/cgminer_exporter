@@ -15,6 +15,9 @@ dep:
 test:
 	@go test ./...
 
+fmt:
+	gofmt -s -w .
+
 clean:
 	@rm -f cgminer_exporter
 

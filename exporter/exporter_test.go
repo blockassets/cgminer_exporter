@@ -1,18 +1,18 @@
 package exporter
 
 import (
-	"testing"
+	"fmt"
 	"github.com/blockassets/cgminer_client"
-	"time"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"net/http/httptest"
 	"io/ioutil"
-	"fmt"
+	"net/http/httptest"
+	"testing"
+	"time"
 )
 
 func TestNewExporter(t *testing.T) {
-	cgClient := cgminer_client.New("10.10.0.11", 4028, time.Duration(2) * time.Second)
+	cgClient := cgminer_client.New("10.10.0.11", 4028, time.Duration(2)*time.Second)
 	exporter := NewExporter(cgClient, "1.0")
 
 	reg := prometheus.NewRegistry()
