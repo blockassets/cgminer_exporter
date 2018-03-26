@@ -1,7 +1,6 @@
 package exporter
 
 import (
-	"fmt"
 	"github.com/blockassets/cgminer_client"
 	"github.com/blockassets/prometheus_helper"
 	"github.com/prometheus/client_golang/prometheus"
@@ -97,7 +96,6 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	minerDataMap := prometheus_helper.NewStructFieldMap(*minerData)
 
 	for key, value := range minerDataMap {
-		fmt.Println("key: " + key)
 		val := reflect.ValueOf(value)
 		// 'Devs' is a special case as a GaugeVec
 		if val.Kind() == reflect.Map {
